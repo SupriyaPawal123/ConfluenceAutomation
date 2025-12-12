@@ -25,7 +25,7 @@ public class ConfluenceReleaseDocGenerator {
 
     private static final String BASE_URL = "https://pawalsupriya001.atlassian.net/wiki/rest/api";
     private static final String USER_EMAIL = "pawalsupriya001@gmail.com";
-    private static final String API_TOKEN = "ATATT3xFfGF0Ubmf74dxiZ9wRFHTfAVXv66hwrGue6LK8w8dfBXTa6gDJFE10DSpINUDDC6say_ZFOb_Qzo128CcaueC1kT86fukg_XpJSJaxsR2MGMojRFjuvUpsVDcqit1Fk4cPQHTp_qJ3ivGlqYSnVzutQiIOnsdt_2GtHZWKgnbKOsKkoo=2C3863F5";
+    private static final String API_TOKEN = "TODO: add token here";
     private static final String SPACE_KEY = "MFS";
 
     private static final HttpClient httpClient = HttpClient.newHttpClient();
