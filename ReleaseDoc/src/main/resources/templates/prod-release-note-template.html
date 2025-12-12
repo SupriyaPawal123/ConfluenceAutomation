@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PROD Release Note and Install-Validation-Backout Plan</title>
+<style>
+  /* Print-friendly */
+  @page { margin: 20mm; }
+  html,body { font-family: "Helvetica Neue", Arial, sans-serif; color: #111; line-height: 1.35; }
+  body { margin: 0; padding: 0; -webkit-print-color-adjust: exact; }
+  .container { max-width: 900px; margin: 18px auto; padding: 18px; }
+  header { text-align: center; margin-bottom: 12px; }
+  h1 { font-size: 20pt; margin: 6px 0; }
+  h2 { font-size: 12pt; margin: 16px 0 8px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+  h3 { font-size: 11pt; margin: 10px 0 6px; }
+  p { margin: 6px 0; font-size: 10pt; }
+  .meta { font-size: 9pt; color: #444; margin-bottom: 12px; }
+  .toc { margin: 10px 0 20px; padding-left: 10px; }
+  .toc a { color: #0066cc; text-decoration: none; font-size: 10pt; }
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 8px 0 14px; }
+  th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: #f7f7f7; font-weight: 600; font-size: 10pt; }
+  .small { font-size: 9pt; color:#444; }
+  .section { page-break-inside: avoid; margin-bottom: 14px; }
+  .steps { counter-reset: step; }
+  .step { margin: 6px 0 8px; padding-left: 18px; position: relative; }
+  .step:before { counter-increment: step; content: counter(step) ". "; position: absolute; left: 0; top: 0; font-weight: 600; }
+  footer { font-size: 9pt; color: #666; text-align: center; margin-top: 20px; border-top: 1px dashed #ddd; padding-top: 8px; }
+  /* Page break helpers */
+  .page-break { page-break-after: always; height: 0; }
+  /* Print-optimized headings for table of contents anchors */
+  a.anchor { display: block; position: relative; top: -80px; visibility: hidden; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>PROD Release Note and Install-Validation-Backout Plan</h1>
+    <div class="meta">Release: <strong>25th Sep</strong> — Change: <strong>BD regulatory, Redis cache changes</strong></div>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <strong>Table of Contents</strong>
+    <ul>
+      <li><a href="#change-info">Change Information</a></li>
+      <li><a href="#key-contacts">Key Contacts</a></li>
+      <li><a href="#tollgate">Tollgate Process check</a></li>
+      <li><a href="#operational-impact">Operational Impact</a></li>
+      <li><a href="#risk-awareness">Risk Awareness</a></li>
+      <li><a href="#assumptions">Assumptions</a></li>
+      <li><a href="#lower-testing">Lower Environment Testing</a></li>
+      <li><a href="#pre-impl">Pre-Implementation Steps</a></li>
+      <li><a href="#auto-impl">Automated Implementation Steps</a></li>
+      <li><a href="#install-steps">Install/Implementation Steps</a></li>
+      <li><a href="#validation">Validation Steps</a></li>
+      <li><a href="#backout">Back-out Steps</a></li>
+      <li><a href="#post-impl">Post Implementation Steps</a></li>
+    </ul>
+  </nav>
+
+  <!-- Change Information -->
+  <section id="change-info" class="section">
+    <a class="anchor" id="change-info-anc"></a>
+    <h2>Change Information</h2>
+    <p><strong>Change Request details:</strong></p>
+    <p class="small">
+      Change: BD regulatory, Redis cache changes.<br/>
+      Prod target date: <strong>18th Sep</strong> (document mentions 18th Sep and 25th Sep release planning).<br/>
+      WO/Change IDs (as present in notes): <em>MI27228: XBS-25.3. MI.09.02</em>.
+    </p>
+
+    <h3>Review & Communication</h3>
+    <p class="small">
+      Communication plan: Internal stakeholder meeting planned on <strong>25th August 2025 | 2:30 PM</strong> to discuss detailed release plan.
+      Post-release notification of success/failure will be sent to applicable stakeholders.
+    </p>
+  </section>
+  <h2>Deployment components</h2>
+  <h2>Basic Details</h2>
+  {{TABLE_BASIC_DETAILS}}
+  
+  <h2>Story Details</h2>
+  {{TABLE_STORY_DETAILS}}
+  
+  <h2>Key Contacts</h2>
+  {{TABLE_KEY_CONTACTS}}
+  
+  <!-- Tollgate -->
+  <section id="tollgate" class="section">
+    <a class="anchor" id="tollgate-anc"></a>
+    <h2>Tollgate Process check</h2>
+    <p class="small">
+      References: PINS Release Note & Install-Validation-Backout Plan Template (Confluence). Follow Production Launch List (FULL / LITE) guidance and PLL checklists.
+    </p>
+	
+	{{TABLE_TOLLGATE_PROCESS_CHECK}}	
+  </section>
+
+  <!-- Operational Impact -->
+  <section id="operational-impact" class="section">
+    <a class="anchor" id="operational-impact-anc"></a>
+    <h2>Operational Impact</h2>
+    <p><strong>Impact Level:</strong> Medium</p>
+    <h3>Impact Analysis</h3>
+    <p class="small">
+      Teams impacted: BizOps, TVO, Ops DBA (as needed). <br/>
+      Outage expected: <strong>No outage expected</strong>. Cross-application impacts: note any dependencies and list them in implementation steps.
+    </p>
+  </section>
+
+  <!-- Risk Awareness -->
+  <section id="risk-awareness" class="section">
+    <a class="anchor" id="risk-awareness-anc"></a>
+    <h2>Risk Awareness</h2>
+    <p class="small">
+      Each team must answer risk questions: business continuity, testing strategy, DDL/DML changes (bulk uploads/backups), outage risk, cross-app impacts, peer-review sign-off.
+    </p>
+    {{TABLE_RISK_AWARENESS}}
+  </section>
+
+  <!-- Assumptions -->
+  <section id="assumptions" class="section">
+    <a class="anchor" id="assumptions-anc"></a>
+    <h2>Assumptions</h2>
+    <ul class="small">
+      <li>OPS DBA available for validation support and to execute DB scripts.</li>
+      <li>Product team approvals are in place (if required).</li>
+    </ul>
+  </section>
+
+  <!-- Lower Environment Testing -->
+  <h2>Lower Environment testing</h2>
+  {{TABLE_LOWER_ENV_TESTING}}
+
+  <!-- Pre-Implementation Steps -->
+  <section id="pre-impl" class="section">
+    <h2>Pre-Implementation Steps</h2>
+    {{TABLE_PRE_IMPLEMENTATION_STEPS}}
+  </section>
+
+  <!-- Automated Implementation -->
+  <section id="auto-impl" class="section">
+    <a class="anchor" id="auto-impl-anc"></a>
+    <h2>Automated Implementation Steps (If Applicable)</h2>
+    {{TABLE_AUTOMATE_IMPLEMENTATION_STEPS}}
+  </section>
+
+  <!-- Install/Implementation Steps -->
+  <section id="install-steps" class="section">
+    <a class="anchor" id="install-steps-anc"></a>
+    <h2>Install / Implementation Steps</h2>
+    {{TABLE_INSTALL_IMPLEMENTATION_STEPS}}
+  </section>
+
+  <!-- Automated Validation Steps -->
+  <section id="validation" class="section">
+    <a class="anchor" id="validation-anc"></a>
+    <h2>Automated Validation Steps</h2>
+   {{TABLE_AUTOMATED_VALIDATION_STEPS}}
+  </section>
+  
+  <!-- Validation Steps -->
+  <section id="validation" class="section">
+    <a class="anchor" id="validation-anc"></a>
+    <h2>Validation Steps</h2>
+    {{TABLE_VALIDATION_STEPS}}
+  </section>
+
+  <!-- Automated Back-out Steps -->
+  <section id="backout" class="section">
+    <a class="anchor" id="backout-anc"></a>
+    <h2>Automated Back-out Steps</h2>
+    {{TABLE_AUTOMATED_BACK_OUT_STEPS}}
+  </section>
+  
+  <!-- Back-out Steps -->
+  <section id="backout" class="section">
+    <a class="anchor" id="backout-anc"></a>
+    <h2>Back-out Steps</h2>
+    {{TABLE_BACKOUT_STEPS}}
+  </section>
+  
+  <!-- Back-out Step Validations -->
+  <section id="backout" class="section">
+    <a class="anchor" id="backout-anc"></a>
+    <h2>Back-out Steps</h2>
+    {{TABLE_BACKOUT_STEPS_VALIDATIONS}}
+  </section>
+
+  <!-- Post Implementation Steps -->
+  <section id="post-impl" class="section">
+    <a class="anchor" id="post-impl-anc"></a>
+    <h2>Post Implementation Steps</h2>
+   {{TABLE_POST_IMPLEMENTATION_STEPS}}
+  </section>
+
+  <div class="page-break"></div>
+
+  <footer>
+    Source document: <em>PROD Release Note and Install-Validation-Backout Plan</em>. :contentReference[oaicite:0]{index=0}
+  </footer>
+</div>
+</body>
+</html>
