@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api")
 public class ReleaseNoteController {
@@ -169,6 +170,6 @@ public class ReleaseNoteController {
 		// Upload to Confluence
 		ConfluenceReleaseDocGenerator.createNewPage(env+" Release Note " + System.currentTimeMillis(), finalHtml, parentPageId);
 
-		return " SUCCESS: "+env+" Confluence release note created with dynamic tables.";
+		return " "+env+" Confluence release note created with dynamic tables.";
 	}
 }
