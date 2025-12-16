@@ -1,5 +1,7 @@
 package com.confluence.ConfluenceTest.controller;
 
+import com.confluence.ConfluenceTest.model.UploadReleaseDetails;
+import com.confluence.ConfluenceTest.repository.UploadReleaseDetailsRepository;
 import com.confluence.ConfluenceTest.service.ExcelService;
 import com.confluence.ConfluenceTest.service.TemplateService;
 import com.confluence.ConfluenceTest.util.HtmlGeneratorUtil;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +27,9 @@ public class ReleaseNoteController {
 
     @Autowired
     private TemplateService templateService;
+
+    @Autowired
+    UploadReleaseDetailsRepository uploadReleaseDetailsRepository;
 
     /**
      * Upload Excel, replace deployment table in the template, create confluence page.
@@ -170,6 +176,19 @@ public class ReleaseNoteController {
 		// Upload to Confluence
 		ConfluenceReleaseDocGenerator.createNewPage(env+" Release Note " + System.currentTimeMillis(), finalHtml, parentPageId);
 
+        //stored listing data in db
+        UploadReleaseDetails uploadReleaseDetails = new UploadReleaseDetails();
+        uploadReleaseDetails.setEnvironment(env);
+        uploadReleaseDetails.setPageName(parentPageName);
+        uploadReleaseDetails.setDateAdded(Instant.now());
+        uploadReleaseDetails.setDateModified(Instant.now());
+        uploadReleaseDetailsRepository.save(uploadReleaseDetails);
+
 		return " "+env+" Confluence release note created with dynamic tables.";
 	}
+
+    @GetMapping(value = "/get-All-upload-release-details")
+    public List<UploadReleaseDetails> getAllUploadReleaseRecords(){
+        return uploadReleaseDetailsRepository.findAll();
+    }
 }

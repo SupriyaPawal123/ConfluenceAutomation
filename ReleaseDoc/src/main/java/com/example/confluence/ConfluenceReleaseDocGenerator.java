@@ -23,9 +23,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ConfluenceReleaseDocGenerator {
 
-	private static final String BASE_URL = "https://xoriant-team-isegwljs.atlassian.net/wiki/rest/api";
+    private static final String BASE_URL = "https://xoriant-team-isegwljs.atlassian.net/wiki/rest/api";
     private static final String USER_EMAIL = "supriya.pawal@xoriant.com";
-    private static final String API_TOKEN = "ATATT3xFfGF06bKh8caA48qdoX-pu5scr-awzeBCaV4ninuTye58xr05TsnFE2Y_VZAywCWWYbtYqPb5gGbWpn8N3EB68qZ-TQhjB_iE_5CDt3y-N0vEETGZbVKv9_7Jde1LF79EyzzRRH13ZkhGN0iCSptwa-UT8AIIX26HxPTw2jWXgGxadk8=63DFDFD9";   
+    private static final String API_TOKEN = "ATATT3xFfGF0oReHcJV82zGfZWA8v5z0hWguHdRpvggiyywh5Tb6hiP3NewW9vUoMWfEwEvO_7vLHTrf-i-DdBjn6WZQUuJSW2NvZH-o6q4oNTQvLMmr5la9v9QH5NOFXzBxd4Fa7g5LUR_jkpMEJyzQ1qC81Khk4soV34DGrUqUSjRFC3j_QgM=72ECD56C";
     private static final String SPACE_KEY = "~71202052e262fac9cd4797a4a7ac851cf8bfbc";
     
     private static final HttpClient httpClient = HttpClient.newHttpClient();
